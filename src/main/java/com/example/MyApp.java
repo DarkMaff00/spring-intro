@@ -1,11 +1,13 @@
 package com.example;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class MyApp {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MessageConfig.class);
 
 
         MessageService messageService = applicationContext.getBean("messageService", MessageService.class);
@@ -20,7 +22,5 @@ public class MyApp {
         if(messageService.hashCode() == messageService1.hashCode()){
             System.out.println("Equal");
         }
-
-        applicationContext.close();
     }
 }
